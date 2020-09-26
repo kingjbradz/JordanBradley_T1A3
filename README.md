@@ -13,6 +13,15 @@ Any users who use the program thereafter will be able to see any content that is
 
 #List of features
 
+Do: 
+
+Read:
+
+Create:
+
+Edit:
+
+Delete:
 
 
 #Outline of user interaction
