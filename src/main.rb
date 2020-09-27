@@ -50,6 +50,17 @@ loop do
     when "read"
         read
     
+    when "create"
+        create
+
+    when "edit"
+        edit
+
+    when "delete"
+        delete
+        
+    when "exit"
+        exit
     
     end
 end
