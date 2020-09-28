@@ -1,4 +1,7 @@
 require 'csv'
+require 'json'
+require 'tabulo'
+require 'colorize'
 
 class ChoreHistory
 end
@@ -11,25 +14,22 @@ class ChoreList
     end
 end
 
-
 def do_chore
     begin
-    puts "Which Chore would you like to do?"
+        puts "Which Chore would you like to do?"
     CSV.foreach(("chore-list.csv"), headers: true) do |line|
         chore_list = ChoreList.new(line["number"], line["chore"])
         puts "#{line['number']}: #{line['chore']}"
     end
     answer = gets.chomp.downcase
-    
         puts "#{answer}"
-    
     #check validility - if invalid, output error message
     #user input name
     #output input 
     #ask user if OK
-    #if no, go to output message 
-    #if yes, save to CSV chore history file
-end
+    #if no, redo  
+    #if yes, save to JSON chore history file with time and date
+    end
 end
 
 def read
@@ -42,26 +42,39 @@ def read
             puts "#{line['number']}: #{line['chore']}"
         end
     elsif answer == "chore history"
-        puts "placeholder"
-        #output history from chore_history.cvs to screen
+        #output history from chore_history.json to screen
     else 
         puts "Invalid answer. Try again!"
     end
 end
 
 
+
 def create
     puts "What new Chore would you like to create?"
+    new_chore = gets.chomp.downcase
+    puts "#{new_chore}"
+    puts "Save to Chore List?"
+    answer = gets.chomp.downcase
+    if answer == "yes" or answer == "y"
+    CSV.write("chore-list.csv", new_chore.push("\n"), mode: "a")
     #user input
     #output input 
     #ask user if OK
     #if no, go to output message 
     #if yes, save to CSV chore list file
+    end
 end
 
 def edit
+    begin
     puts "Which Chore would you like to edit?"
-    #output chore_list
+    CSV.foreach(("chore-list.csv"), headers: true) do |line|
+        chore_list = ChoreList.new(line["number"], line["chore"])
+        puts "#{line['number']}: #{line['chore']}"
+    end
+    answer = gets.chomp.downcase
+    #output chore list
     #user input
     #check validility - if invalid, output error message
     #ask user what input would like to change to
@@ -70,11 +83,16 @@ def edit
     #ask user if OK
     #if no, go to output message 
     #if yes, save to CSV chore list file
+    end
 end
 
 def delete
     puts "Which Chore would you like to delete?"
-    #output chore_list
+    CSV.foreach(("chore-list.csv"), headers: true) do |line|
+        chore_list = ChoreList.new(line["number"], line["chore"])
+        puts "#{line['number']}: #{line['chore']}"
+    end
+    answer = gets.chomp.downcase
     #user input
     #check validility - if invalid, output error message
     #output input 
@@ -96,8 +114,8 @@ end
 
 loop do
     
-    puts "Welcome to Home Task Manager"
-    puts "Please type and enter the feature you wish to use"
+    puts "Welcome to Home Task"
+    puts "Please type and enter the feature you wish to use:"
     puts "Do Chore | Read | Create | Edit | Delete | Exit"
     menu_select = gets.chomp.downcase
 
