@@ -1,8 +1,8 @@
-
 require 'csv'
 
+chore_list = 
 
-
+chore_history =
 
 class User
 end
@@ -16,9 +16,9 @@ def read
     puts "Chore Types or Chore History?"
     answer = gets.chomp.downcase
     if answer == "chore types"
-        puts "poo"
+       
     elsif answer == "chore history"
-        puts "shit"
+        
     end
 end
 
