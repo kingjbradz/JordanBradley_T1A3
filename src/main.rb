@@ -3,34 +3,9 @@ require 'json'
 require 'tabulo'
 require 'colorize'
 
-class ChoreHistory
-end
 
+chores = []
 
-class ChoreList
-    def initialize(number, chore)
-        @number = number
-        @chore = chore
-    end
-end
-
-def do_chore
-    begin
-        puts "Which Chore would you like to do?"
-    CSV.foreach(("chore-list.csv"), headers: true) do |line|
-        chore_list = ChoreList.new(line["number"], line["chore"])
-        puts "#{line['number']}: #{line['chore']}"
-    end
-    answer = gets.chomp.downcase
-        puts "#{answer}"
-    #check validility - if invalid, output error message
-    #user input name
-    #output input 
-    #ask user if OK
-    #if no, redo  
-    #if yes, save to JSON chore history file with time and date
-    end
-end
 
 def read
         puts "Which would you like to read,"
@@ -38,13 +13,12 @@ def read
         answer = gets.chomp.downcase
     if answer == "chore types" or answer == "chore type"
         CSV.foreach(("chore-list.csv"), headers: true) do |line|
-            chore_list = ChoreList.new(line["number"], line["chore"])
             puts "#{line['number']}: #{line['chore']}"
         end
     elsif answer == "chore history"
-        #output history from chore_history.json to screen
-    else 
-        puts "Invalid answer. Try again!"
+        File.open("chore-history.json", mode: "r") do |line|
+            p "#{line}"
+        end
     end
 end
 
@@ -54,10 +28,10 @@ def create
     puts "What new Chore would you like to create?"
     new_chore = gets.chomp.downcase
     puts "#{new_chore}"
-    puts "Save to Chore List?"
-    answer = gets.chomp.downcase
+    puts "Save '#{new_chore}' to Chore List?"
+    answer = gets.chomp
     if answer == "yes" or answer == "y"
-    CSV.write("chore-list.csv", new_chore.push("\n"), mode: "a")
+    File.open("chore-list.csv", "a") 
     #user input
     #output input 
     #ask user if OK
@@ -70,8 +44,8 @@ def edit
     begin
     puts "Which Chore would you like to edit?"
     CSV.foreach(("chore-list.csv"), headers: true) do |line|
-        chore_list = ChoreList.new(line["number"], line["chore"])
         puts "#{line['number']}: #{line['chore']}"
+        chores.push line.to_h
     end
     answer = gets.chomp.downcase
     #output chore list
@@ -89,8 +63,8 @@ end
 def delete
     puts "Which Chore would you like to delete?"
     CSV.foreach(("chore-list.csv"), headers: true) do |line|
-        chore_list = ChoreList.new(line["number"], line["chore"])
         puts "#{line['number']}: #{line['chore']}"
+        chores.push line.to_h
     end
     answer = gets.chomp.downcase
     #user input
@@ -99,17 +73,6 @@ def delete
     #ask user if OK
     #if no, go to output message 
     #if yes, write to CSV chore list file
-end
-
-def exit_message
-        puts "Exiting application, are you sure? If yes, type 'yes'."
-        answer = gets.chomp.downcase
-    if answer == "yes" or answer == "y"
-        puts "Closing application. Thank you!"
-        exit
-    else  
-        puts "Returning to title screen."
-    end
 end
 
 loop do
@@ -122,7 +85,25 @@ loop do
     case menu_select
 
     when "do", "do chore", "dochore", "chore"
-        do_chore
+        puts "Which Chore would you like to do?"
+        CSV.foreach(("chore-list.csv"), headers: true, ) do |line|
+            puts "#{line['number']}: #{line['chore']}"
+            chores.push line.to_h
+        end
+        answer = gets.chomp
+        puts chores.find { |chore| chore['number'] == answer } 
+        puts "What is your name?"
+        name = gets.chomp
+        puts "#{answer} done by #{name}. Is this correct?"
+        confirm = gets.chomp
+        if confirm == 'yes'
+            File.write("chore-history.json", "#{answer}, #{name}, #{Time.now}",  mode: "a")
+        else
+            
+        end
+        #check validility - if invalid, output error message
+        #ask user if OK
+        #if no, redo  
 
     when "read"
         read
@@ -137,7 +118,14 @@ loop do
         delete
         
     when "exit"
-        exit_message
+        puts "Exiting application, are you sure? If yes, type 'yes'."
+        answer = gets.chomp.downcase
+    if answer == "yes" or answer == "y"
+        puts "Closing application. Thank you!"
+        exit
+    else  
+        puts "Returning to title screen."
+    end
     
     end
 end
