@@ -3,7 +3,6 @@ require 'json'
 require 'tabulo'
 require 'colorize'
 
-
 chores = []
 
 
@@ -41,7 +40,6 @@ def create
 end
 
 def edit
-    begin
     puts "Which Chore would you like to edit?"
     CSV.foreach(("chore-list.csv"), headers: true) do |line|
         puts "#{line['number']}: #{line['chore']}"
@@ -57,7 +55,6 @@ def edit
     #ask user if OK
     #if no, go to output message 
     #if yes, save to CSV chore list file
-    end
 end
 
 def delete
@@ -91,15 +88,13 @@ loop do
             chores.push line.to_h
         end
         answer = gets.chomp
-        puts chores.find { |chore| chore['number'] == answer } 
+        the_chore = chores.find { |chore| chore['number'] == answer } 
         puts "What is your name?"
         name = gets.chomp
-        puts "#{answer} done by #{name}. Is this correct?"
+        puts "#{the_chore["chore"]} done by #{name}. Is this correct?"
         confirm = gets.chomp
         if confirm == 'yes'
-            File.write("chore-history.json", "#{answer}, #{name}, #{Time.now}",  mode: "a")
-        else
-            
+            File.write("chore-history.csv", "\n#{the_chore["chore"]}, #{name}, #{Time.now}",  mode: "a")          
         end
         #check validility - if invalid, output error message
         #ask user if OK
