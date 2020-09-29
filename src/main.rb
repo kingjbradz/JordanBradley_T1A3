@@ -7,6 +7,8 @@ chores = []
 
 chore_list = CSV.foreach(("chore-list.csv"), headers: true)
 
+
+
 loop do
   puts "Welcome to Home Task!".red
   puts "Please type and enter the feature you wish to use:".light_red
@@ -22,21 +24,16 @@ loop do
       chores.push line.to_h
     end
     answer = gets.chomp
-    the_chore = chores.find { |chore| chore["Number"] == answer }
-    # if value is not valid
-    #  output "Invalid! Try again."
-    # return to start of section
-    # end
+    the_chore = chores.find { |chore| chore["Number"] == answer } 
     puts "What is your name?".blue
     name = gets.chomp
-    puts "#{the_chore["Chore"]} done by #{name}. Is this correct?".blue
+    puts "#{the_chore["Chore"]} done by #{name}. Is this correct? If so. type 'yes'.".blue
     confirm = gets.chomp.downcase
     if confirm == "yes"
       File.write("chore-history.csv", "\n#{the_chore["Chore"]}, #{name}, #{Time.now}", mode: "a")
       puts "Chore is logged. Thanks #{name}!".blue
-      # else
-      #  if value answer is not yes
-      # return to start of loop
+    elsif confirm != "yes"
+      puts "Okay, won't save that one. Try again!".blue
     end
   when "read"
     puts "Which would you like to read,".blue
@@ -50,7 +47,9 @@ loop do
       CSV.foreach("chore-history.csv", headers: true) do |line|
         puts "#{line["Chore"]} done by#{line["Name"]} at#{line["Date"]}.".green
       end
-    end
+    else 
+      puts "Invalid. Try again!".blue
+    end 
   when "create"
     puts "This is the current chore list.".blue
     chore_list.each do |line|
