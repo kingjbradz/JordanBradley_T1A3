@@ -58,7 +58,7 @@ loop do
     puts "What would you like to add?".blue
     item = gets.chomp
     #check if item exists
-    #if yes, go to start
+    #if yes, invalid, go to start
     #if no, continue
     #ask if user is satisfied
     #if yes, append to CVS file
@@ -104,6 +104,6 @@ loop do
       puts "Returning to title screen.".magenta
     end
   else
-    puts "Invalid input"
+    puts "Invalid input."
   end
 end
