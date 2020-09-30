@@ -1,15 +1,19 @@
 require "csv"
-require "json"
-require "tabulo"
 require "colorize"
+require "smarter_csv"
+require 'lolize'
+require 'tty-font'
+require 'tty-table'
 
 chores = []
 
 chore_list = CSV.foreach(("chore-list.csv"), headers: true)
 
+title_font = TTY::Font.new(:doom)
 
 
 loop do
+  puts title_font.write("HOME TASK").yellow
   puts "Welcome to Home Task!".red
   puts "Please type and enter the feature you wish to use:".light_red
   puts "Do Chore | Read | Create | Edit | Delete | Exit".cyan
@@ -24,7 +28,7 @@ loop do
       chores.push line.to_h
     end
     answer = gets.chomp
-    the_chore = chores.find { |chore| chore["Number"] == answer } 
+    the_chore = chores.find { |chore| chore["Number"] == answer }
     puts "What is your name?".blue
     name = gets.chomp
     puts "#{the_chore["Chore"]} done by #{name}. Is this correct? If so. type 'yes'.".blue
@@ -47,16 +51,26 @@ loop do
       CSV.foreach("chore-history.csv", headers: true) do |line|
         puts "#{line["Chore"]} done by#{line["Name"]} at#{line["Date"]}.".green
       end
-    else 
+    else
       puts "Invalid. Try again!".blue
-    end 
+    end
   when "create"
     puts "This is the current chore list.".blue
     chore_list.each do |line|
       puts "#{line["Number"]}: #{line["Chore"]}".green
     end
     puts "What would you like to add?".blue
-    item = gets.chomp
+    new_chore = gets.chomp
+    puts "Would you like to designate a number?".blue
+    number = gets.chomp.to_i
+    puts "#{new_chore} is to be added. Is that OK?".blue
+    confirm = gets.chomp.downcase
+    if confirm == "yes"
+      File.write("chore-list.csv", "\n#{number},#{new_chore}", mode: "a")
+      puts "#{new_chore} is in the list!"
+    elsif confirm != "yes"
+      puts "Not saving. Try again!"
+    end
     #check if item exists
     #if yes, invalid, go to start
     #if no, continue
