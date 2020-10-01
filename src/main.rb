@@ -22,7 +22,7 @@ loop do
   case menu_select
 
   when "do", "do chore", "dochore", "chore"
-    
+    begin
     puts "Which Chore would you like to do?".blue
     chore_list.each do |line|
       puts "#{line["number"]}: #{line["chore"]}".green
@@ -40,6 +40,9 @@ loop do
     elsif confirm != "yes"
       puts "Okay, won't save that one. Try again!".blue
     end
+  rescue NoMethodError
+    puts "Whoops! Seems what you put in didn't exist. Try again!"
+  end
   when "read"
     puts "Which would you like to read,".blue
     puts "Chore Types or Chore History?".light_blue

@@ -13,16 +13,24 @@ Any users who use the program thereafter will be able to see any content that is
 
 #List of features
 
-Do: 
+**Do:**
+The main feature of the application. A simple process wherein the user has a preloaded set of options to choose from that each represent a chore that can be done around the house, each prefaced with a number. The user types in the relevant number for the desired chore, followed by a follow-up prompt asking the user for their name. After typing in their name, the application then requests that the user confirm the details by inputting 'yes', after this the data is written to a 'Chore History' file that logs the date, time, type of chore and relevant persons name.
 
 Read:
 
+This option is split into two parts. Upon loading this section, the user is prompted by a request asking if the user would either like to see 'Chore Types' or 'Chore History'. If the user selects chore types, they will see the relevant types of chore available as per the Do section. If the user selects 'Chore History', they will be able to see all previous chores logged with relevant dates, times, chore types and names of the persons who did said chore.
+
 Create:
+
+This option allows the user to create their own chores. The user will initially be prompted in to input a new chore type, followed by a number they wish to designate said chore. The user is then prompted to confirm the entered information is to their liking, if yes the data is saved to the 'Chore Types' file and would be available to peruse over in the 'Do' and 'Read' sections. If the user selects no, they are redirected to the title screen and no data is saved.
 
 Edit:
 
-Delete:
+This option allows the user to edit the types of chores that are already available. The types of chores available are first outputted, with the user selecting which option they'd like to change. After inputting the new information, they are prompted to confirm they are happy with the changes. If yes, the data is written over. If not, they return to the title screen with no data saved.
 
+Delete:
+ 
+This option allows the user to delete any of the chore types currently available. They types of chores available for deletion are first put to the screen, with the user selecting which option they'd like to delete. After typing in the specific chore type, they are then asked to confirm if they are sure they want it deleted. If yes, the item is deleted. If no, they are sent back to the title screen with no changes to the data.
 
 #Outline of user interaction
 
@@ -30,7 +38,19 @@ Delete:
 
 #Control flow diagram
 
-Pictures
+![Option Menu](/JordanBradley_T1A3/docs/option_menu.png)
+
+!['Do' Process](/JordanBradley_T1A3/docs/do_process.png)
+
+![Read Process](/JordanBradley_T1A3/docs/read_process.png)
+
+![Create Process](/JordanBradley_T1A3/docs/create_process.png)
+
+![Edit Process](/JordanBradley_T1A3/docs/edit_process.png)
+
+![Delete Process](/JordanBradley_T1A3/docs/delete_process.png)
+
+![Exit Process](/JordanBradley_T1A3/docs/exit_process.png)
 
 #Implementation plan
 
