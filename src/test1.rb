@@ -1,34 +1,51 @@
-
 require_relative "gemfile.rb"
 
+chore_list = CSV.foreach(("chore-list.csv"), headers: true)
 
-
-def do_section
-begin
-    puts "Which Chore would you like to do?".blue
-    chore_list.each do |line|
-      puts "#{line["number"]}: #{line["chore"]}".green
-      chores.push line.to_h
-    end
-    answer = gets.chomp
-    the_chore = chores.find { |chore| chore["number"] == answer }
-    puts "What is your name?".blue
-    name = gets.chomp
-    puts "#{the_chore["chore"]} done by #{name}. Is this correct? If so. type 'yes'.".blue
-    confirm = gets.chomp.downcase
-    if confirm == "yes"
-      File.write("chore-history.csv", "\n#{the_chore["chore"]}, #{name}, #{Time.now}", mode: "a")
-      puts "Chore is logged. Thanks #{name}!".blue
-    elsif confirm != "yes"
-      puts "Won't save that one. Try again!".light_blue
-    end
-  rescue NoMethodError
-    puts "Whoops! Sorry #{name}, seems the chore you put in didn't exist. Try again!".magenta
+loop do
+puts "Which would you like to read,".blue
+puts "Chore Types or Chore History?".light_blue
+puts "You may also exit by typing 'exit'.".red
+answer = gets.chomp.downcase
+if answer == "chore types" or answer == "chore type"
+  chore_list.each do |line|
+    table = TTY::Table.new([["#{line["number"]}","#{line["chore"]}"]])
+    puts table.render(:ascii, padding: [1,2,1,2], alignments: [:center]).yellow
   end
+elsif answer == "chore history"
+  CSV.foreach("chore-history.csv", headers: true) do |line|
+    table = TTY::Table.new(["Chore", "Name", "Date & Time"], [["#{line["Chore"]}","#{line["Name"]}","#{line["Date"]}."]])
+    puts table.render(:ascii, resize: true, padding: [1,2], alignments: [:center, :center, :center]).cyan
+  end
+elsif answer == "exit"
+  puts "Bye bye!".blue
+  exit
+else
+  puts "Invalid. Try again!".magenta
+end
 end
 
 
-describe do_section do
-    it "does chores" do
+describe read do
+it "displays first message" do
+end
+  context "when user types in chore types" do
+    it "displays chore types" do
     end
+  end
+  context "when user types in chore history" do
+    it "displays chore history" do
+    end
+  end
+  context "when user types in invalid input" do
+    it "displays error message" do
+    end
+  end
+  context "exit" do
+    it "displays goodbye message" do
+      it "exits application" do
+      end
+    end
+  end
+
 end
