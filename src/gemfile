@@ -30,3 +30,8 @@ git_source(:github) { |repo_name| "https://github.com/piotrmurach/#{tty-prompt}"
 
 gem "tty-prompt", "~> 0.21.0"
 
+#======== RSpec =========
+
+git_source(:github) { |repo_name| "https://github.com/rspec/#{rspec}"}
+
+gem "rspec", "~> 3.4.0"

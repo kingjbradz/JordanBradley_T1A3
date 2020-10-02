@@ -24,3 +24,7 @@ require 'tty-table'
 # ======= TTY-PROMPT =========
 
 require 'tty-prompt'
+
+# ======= RSPEC ==========
+
+require 'rspec/autorun'

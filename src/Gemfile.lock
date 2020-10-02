@@ -2,11 +2,25 @@ GEM
   remote: http://rubygems.org/
   specs:
     colorize (0.8.1)
+    diff-lcs (1.4.4)
     equatable (0.6.1)
     necromancer (0.5.1)
     pastel (0.7.4)
       equatable (~> 0.6)
       tty-color (~> 0.5)
+    rspec (3.4.0)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
+    rspec-core (3.4.4)
+      rspec-support (~> 3.4.0)
+    rspec-expectations (3.4.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-mocks (3.4.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-support (3.4.1)
     smarter_csv (1.1.5)
     strings (0.1.8)
       strings-ansi (~> 0.1)
@@ -40,6 +54,7 @@ PLATFORMS
 
 DEPENDENCIES
   colorize (~> 0.8.1)
+  rspec (~> 3.4.0)
   smarter_csv (~> 1.1.4)
   tty-font (~> 0.4.0)
   tty-prompt (~> 0.21.0)
