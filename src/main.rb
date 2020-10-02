@@ -10,7 +10,7 @@ chore_data = SmarterCSV.process("chore-list.csv")
 
 prompt = TTY::Prompt.new
 
-puts title_font.write("HOME TASK").yellow
+puts title_font.write("HOME TASK", letter_spacing: 2).yellow
 puts "Welcome to Home Task!".red
 
 loop do
@@ -38,10 +38,10 @@ loop do
       File.write("chore-history.csv", "\n#{the_chore["chore"]}, #{name}, #{Time.now}", mode: "a")
       puts "Chore is logged. Thanks #{name}!".blue
     elsif confirm != "yes"
-      puts "Okay, won't save that one. Try again!".blue
+      puts "Won't save that one. Try again!".light_blue
     end
   rescue NoMethodError
-    puts "Whoops! Seems what you put in didn't exist. Try again!"
+    puts "Whoops! Sorry #{name}, seems the chore you put in didn't exist. Try again!".magenta
   end
   when "read"
     puts "Which would you like to read,".blue
@@ -58,7 +58,7 @@ loop do
         puts table.render(:ascii, resize: true, padding: [1,2], alignments: [:center, :center, :center]).cyan
       end
     else
-      puts "Invalid. Try again!".blue
+      puts "Invalid. Try again!".magenta
     end
   when "create"
     puts "This is the current chore list.".blue
@@ -67,7 +67,7 @@ loop do
     end
     puts "What would you like to add?".blue
     new_chore = gets.chomp
-    puts "Would you like to designate a number?".blue
+    puts "Please designate a number!".blue
     number = gets.chomp.to_i
     puts "#{new_chore} is to be added".blue
     puts "with a designation of #{number}. Is that OK?".blue
@@ -76,15 +76,8 @@ loop do
       File.write("chore-list.csv", "\n#{number},#{new_chore}", mode: "a")
       puts "#{new_chore} is in the list!"
     elsif confirm != "yes"
-      puts "Not saving. Try again!"
+      puts "Not saving. Try again!".light_blue
     end
-    #check if item exists
-    #if yes, invalid, go to start
-    #if no, continue
-    #ask if user is satisfied
-    #if yes, append to CVS file
-    #if no, start from beginning
-
   when "edit"
     begin
       chore_data.each_with_index do |line|
@@ -96,7 +89,7 @@ loop do
       puts "woot"
     end
   rescue TypeError
-    puts "Not working. Back to title menu!"
+    puts "Not working. Back to title menu!".magenta
   end
     #   the_chore = chores.find { |chore| chore["number"] == answer }
     #   puts "Ok. What to?"
@@ -147,8 +140,8 @@ loop do
     answer = gets.chomp.downcase
     the_chore = chores.find { |chore| chore["chore"] == answer }
     chores.delete answer
-    rescue
-      puts "Oops. Not working. Back to title menu!"
+    rescue TypeError
+      puts "Oops. Not working. Back to title menu!".magenta
   #   File.open("chore-list.csv", "w")
   #   csv = File.write("chore-list.csv", "#{chores}", mode: "a")
   #   chores.each do |chore|
@@ -164,16 +157,18 @@ loop do
     #if yes, write to CSV chore list file
   end
   when "exit"
+    leaving_font = TTY::Font.new(:standard)
     puts "Exiting application, are you sure?".blue
     puts "If yes, type 'yes'.".light_blue
     answer = gets.chomp.downcase
     if answer == "yes" or answer == "y"
-      puts "Closing application. Thank you!".yellow
+      puts leaving_font.write("GOODBYE!", letter_spacing: 2).yellow
+      puts "Closing application. Thank you!".red
       exit
     else
       puts "Returning to title screen.".magenta
     end
   else
-    puts "Invalid input."
+    puts "Invalid input! Please try again.".magenta
   end
 end
