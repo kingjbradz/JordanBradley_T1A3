@@ -3,32 +3,33 @@ require_relative "gemfile.rb"
 chore_list = CSV.foreach(("chore-list.csv"), headers: true)
 
 loop do
-puts "Which would you like to read,".blue
-puts "Chore Types or Chore History?".light_blue
-puts "You may also exit by typing 'exit'.".red
-answer = gets.chomp.downcase
-if answer == "chore types" or answer == "chore type"
-  chore_list.each do |line|
-    table = TTY::Table.new([["#{line["number"]}","#{line["chore"]}"]])
-    puts table.render(:ascii, padding: [1,2,1,2], alignments: [:center]).yellow
+  puts "Which would you like to read,".blue
+  puts "Chore Types or Chore History?".light_blue
+  puts "You may also exit by typing 'exit'.".red
+  answer = gets.chomp.downcase
+  if answer == "chore types" or answer == "chore type"
+    chore_list.each do |line|
+      table = TTY::Table.new([["#{line["number"]}", "#{line["chore"]}"]])
+      puts table.render(:ascii, padding: [1, 2, 1, 2], alignments: [:center]).yellow
+    end
+  elsif answer == "chore history"
+    CSV.foreach("chore-history.csv", headers: true) do |line|
+      table = TTY::Table.new(["Chore", "Name", "Date & Time"], [["#{line["Chore"]}", "#{line["Name"]}", "#{line["Date"]}."]])
+      puts table.render(:ascii, resize: true, padding: [1, 2], alignments: [:center, :center, :center]).cyan
+    end
+  elsif answer == "exit"
+    puts "Bye bye!".blue
+    exit
+  else
+    puts "Invalid. Try again!".magenta
   end
-elsif answer == "chore history"
-  CSV.foreach("chore-history.csv", headers: true) do |line|
-    table = TTY::Table.new(["Chore", "Name", "Date & Time"], [["#{line["Chore"]}","#{line["Name"]}","#{line["Date"]}."]])
-    puts table.render(:ascii, resize: true, padding: [1,2], alignments: [:center, :center, :center]).cyan
-  end
-elsif answer == "exit"
-  puts "Bye bye!".blue
-  exit
-else
-  puts "Invalid. Try again!".magenta
-end
 end
 
-
-describe read do
-it "displays first message" do
-end
+rspec.describe "read" do
+  context "when user enters read section" do
+    it "displays first message" do
+    end
+  end
   context "when user types in chore types" do
     it "displays chore types" do
     end
@@ -47,5 +48,4 @@ end
       end
     end
   end
-
 end

@@ -45,7 +45,143 @@ This option allows the user to delete any of the chore types currently available
 
 #Outline of user interaction
 
+####**1)**
+Application is opened on terminal.
 
+####**2)**
+***Options Menu***
+
+**2a)**
+Options menu featuring each option available to the user.
+Text explaining the options is output, affirming to the user that they need to type in their desired option to follow through over to the next section. 
+These options are labeled 'Do', 'Read', 'Create', 'Edit', 'Delete', and 'Exit'.
+For example, to peruse the 'read' section, the user would need to type in and enter 'read'.
+
+**2b)**
+Errors in this section are handled whenever a user types in an invalid input, which in this case is anything typed that is not any of the previously mentioned options.
+In this case an error message stating the input is invalid is then displayed, followed by a return to the options menu.
+
+
+####**3)**
+#####***'Do' section***
+
+**3a)**
+After selecting 'do' in the options menu, the available chores are output in a numerical list starting from 1, with each number assigned a chore. 
+
+**3b)**
+The user then inputs the number relevant to the chore they wish to do.
+
+**3c)**
+After this, a message is displayed prompting them to enter their name.
+
+**3d)**
+Once entering that, the final prompt is shown, confirming if they would like to go through with this action.
+
+**3e)**
+If the user enters 'yes', a message notifying the user that the chore has been logged in displayed, followed by the previously inputted name, chore type, date and time written to the 'chore history' CSV file. The user is then returned to the options menu.
+
+**3f)**
+If the user enters any other answer besides 'yes', a message is displayed to the user notifying them that the information will not be saved, and they are then returned to the options menu.
+
+**3g)**
+In terms of error handling, in the initial input if any value inconsistent with the numbers displayed is entered, at the end of the process an error message displaying the invadility of such is shown, followed by a return to the options menu.
+
+
+####**4)**
+#####***Read section***
+
+**4a)**
+After typing in 'read' in the options menu, a message asking the user whether they want to read 'chore types' or 'chore history' is displayed. 
+
+**4b)**
+The user then types in the relevant item they wish to view.
+
+**4c)**
+If the user enters 'chore types', the 'chore types' CSV file contents are output, showing the user the types of chores available.
+
+**4d)**
+If the user enters 'chore history', the 'chore history' CSV file contents are then output, showing the user a full history of chores logged with previously entered chore types, names, dates and times. The user is then returned to the options menu.
+
+**4e)**
+If any value inconsistent with 'chore type', 'chore types', or 'chore history' is entered, an error message is displayed notifying them of the invalidility, followed by a return to the options menu.
+
+####**5)**
+#####***Create section***
+
+**5a)**
+After typing in 'create' in the options section, the contents of the 'chore types' CSV file is output, followed by a message asking the user what extra item they'd like to create.
+
+**5b)**
+The user then inputs the title of the new chore type they wish to enter.
+
+**5c)**
+A message is output asking the user to assign a numerical designation for the new chore type.
+
+**5d)**
+The user then inputs a number they wish to assign.
+
+**5e)**
+A message asking the customer to confirm the chore type and numerical designation is displayed.
+
+**5f)**
+If the user types 'yes', the new chore type and its numerical designation is saved to the 'chore types' CSV file. The user is then returned to the options menu.
+
+**5g)**
+If any answer other than 'yes' is entered in the final input, a message to the user communicating that the values will not be saved is displayed, followed by a return to the options menu.
+
+
+
+####**6)**
+#####***Edit section***
+
+**6a)**
+If the user types in 'edit' in the options menu, the contents of the 'chore types' CSV are displayed, asking the user what specific item they'd like to edit.
+
+**6b)**
+The user then inputs the name of the chore type they'd like to edit.
+
+**6c)**
+If the values entered are consistent with any of the items available, a message is displayed asking the user what they'd like to change the item to.
+
+**6d)**
+The user then types in the name of the new value.
+
+**6e)**
+A message displaying the edited chore type is displayed, the user is then returned to the options menu.
+
+**6f)**
+In the initial input section, if the values entered are inconsistent with the chore tyoes stored, an error message is displayed and the user is returned to the options menu. 
+
+
+####**7)**
+#####***Delete section***
+
+**7a)**
+If the user enters 'delete' on the options menu, the 'chore types' CSV file contents are displayed to the user, then asking them what item they would like to delete.
+
+**7b)**
+The user then types in the value of the item they'd like to delete.
+
+**7c)**
+If the entered item is valid, the user is then prompted to confirm their deletion.
+
+**7d)**
+A message acknowledging the item's deletion is output to the user, and they are then returned to the options menu.
+
+**7e)**
+If the initial inputs value is not valid, an error message is shown. The user is then returned to the options menu.
+
+####**8)**
+#####***Exit process***
+
+**8a)**
+if the user selects 'exit' on the options menu, a message relaying the application will be closed will be sent, along with a request that the user confirm they'd like to do so by typing 'yes'.
+
+**8b)**
+If the user inputs 'yes', a goodbye message is shown and the application is closed.
+
+**8c)**
+If the user inputs anything other than 'yes', an error message is shown and the user is returned to the options menu.
 
 #Control flow diagram
 
