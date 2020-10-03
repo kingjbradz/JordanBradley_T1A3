@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'gem_relative.rb'
 
 chores = []
@@ -13,17 +15,24 @@ prompt = TTY::Prompt.new
 puts title_font.write('HOME TASK', letter_spacing: 2).yellow
 puts 'Welcome to Home Task!'.red
 
+choices = [
+  { name: 'Do Chore', value: 1 },
+  { name: 'Read', value: 2 },
+  { name: 'Create', value: 3 },
+  { name: 'Edit', value: 4 },
+  { name: 'Delete', value: 5 },
+  { name: 'Exit', value: 6 }
+]
+
 loop do
-  puts 'Please type and enter the feature you wish to use:'.light_red
-  # prompt.select("What would you like to do?", %w(Do Read Create Edit Delete Exit))
-  puts 'Do Chore | Read | Create | Edit | Delete | Exit'.cyan
-  menu_select = gets.chomp.downcase
+  puts 'Please select the feature you wish to use:'.light_red
+  menu_select = prompt.select('What would you like to do?', choices)
 
   case menu_select
 
-  when 'do', 'do chore', 'dochore', 'chore'
+  when 1
     begin
-      puts 'Which Chore would you like to do?'.blue
+      puts 'Type the number of the chore you wish to do:'.blue
       chore_list.each do |line|
         puts "#{line['number']}: #{line['chore']}".green
         chores.push line.to_h
@@ -43,7 +52,7 @@ loop do
     rescue NoMethodError
       puts "Whoops! Sorry #{name}, seems the chore you put in didn't exist. Try again!".magenta
     end
-  when 'read'
+  when 2
     puts 'Which would you like to read,'.blue
     puts 'Chore Types or Chore History?'.light_blue
     answer = gets.chomp.downcase
@@ -60,7 +69,7 @@ loop do
     else
       puts 'Invalid. Try again!'.magenta
     end
-  when 'create'
+  when 3
     puts 'This is the current chore list.'.blue
     chore_list.each do |line|
       puts "#{line['number']}: #{line['chore']}".green
@@ -78,13 +87,13 @@ loop do
     elsif confirm != 'yes'
       puts 'Not saving. Try again!'.light_blue
     end
-  when 'edit'
+  when 4
     begin
       chore_list.each do |line|
         puts "#{line['number']}: #{line['chore']}"
         chores.push line.to_h
       end
-      puts 'What do you want to change?'
+      puts 'Type the number of the chore you wish to change.'
       chore_action = gets.chomp
       if chore_action == chore_data[:chore]
       end
@@ -129,14 +138,13 @@ loop do
     # if no, go to output message
     # if yes, save to CSV chore list file
 
-  when 'delete'
+  when 5
     begin
-      puts 'Which Chore would you like to delete?'.blue
+      puts 'Type the number of the chore you wish to delete:'.blue
       chore_list.each do |line|
         puts "#{line['number']}: #{line['chore']}"
         chores.push line['chore']
       end
-      puts "What don't you need?"
       answer = gets.chomp.downcase
       the_chore = chores.find { |chore| chore['chore'] == answer }
       chores.delete answer
@@ -156,7 +164,7 @@ loop do
       # if no, go to output message
       # if yes, write to CSV chore list file
     end
-  when 'exit'
+  when 6
     leaving_font = TTY::Font.new(:standard)
     puts 'Exiting application, are you sure?'.blue
     puts "If yes, type 'yes'.".light_blue

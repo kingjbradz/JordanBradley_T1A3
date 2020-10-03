@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'gem_relative.rb'
 require 'rspec/autorun'
 

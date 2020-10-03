@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'gems.rb'
 
 chore_list = CSV.open('chore-list.csv', headers: true)
