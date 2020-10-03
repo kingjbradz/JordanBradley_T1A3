@@ -174,9 +174,7 @@ loop do
       puts 'Closing application. Thank you!'.red
       exit
     else
-      puts 'Returning to title screen.'.magenta
+      puts 'Invalid input! Returning to title screen.'.magenta
     end
-  else
-    puts 'Invalid input! Please try again.'.magenta
   end
 end

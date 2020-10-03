@@ -15,9 +15,15 @@ The target audience is not specific in the sense that I am targeting anyone from
 
 ####How the target audience would use the application:
 
-Once opening the program up on terminal, the end user would need to type of 6 commands, namely being; Do, Read, Create, Edit, Delete, Exit. The user can type in any one of those words featured in (uppercase, lowercase or a mixture thereof is fine) the menu and go to the next prompt, any invalid inputs will result in an error message, taking them back to the option menu. In the 'Do' section, the user can state what chore they have completed from a printed list sourced from the chore list folder. In the 'Read' section, there are 2 options, 1 is to read the list of chore types, the other is a history of chores done. In the 'Create' section, the user can create a new chore type, with that type being saved to be able to use in future instances of the 'Do' function. In the 'Edit' section, users can change the information of items saved in the chore list file. In the 'Delete' section, users can delete items from the chore list file. In the 'Exit' sections, users can exit the program.
+Once opening the program up on terminal, the end user would need to select one of 6 commands on the main interface, namely being; Do Chore, Read, Create, Edit, Delete, Exit. 
+The user can type in any one of those words featured in (uppercase, lowercase or a mixture thereof is fine) the menu and go to the next prompt, any invalid inputs will result in an error message, taking them back to the option menu. 
+In the 'Do' section, the user can state what chore they have completed from a printed list sourced from the chore list folder. 
+In the 'Read' section, there are 2 options, 1 is to read the list of chore types, the other is a history of chores done.
+In the 'Create' section, the user can create a new chore type, with that type being saved to be able to use in future instances of the 'Do' function. 
+In the 'Edit' section, users can change the information of items saved in the chore list file.
+ In the 'Delete' section, users can delete items from the chore list file. In the 'Exit' sections, users can exit the program.
 
-Any users who use the program thereafter will be able to see any content that is been saved into the list from the 'Create' and 'Edit' options in the chore list section of the 'Read' area, whils also being able to browse a chore list history in the same section if the previous user had ran any instances of the 'Do' function.
+Any users who use the program thereafter will be able to see any content that is been saved into the list from the 'Create' and 'Edit' options in the chore list section of the 'Read' area, whilst also being able to browse a chore list history in the same section if the previous user had ran any instances of the 'Do' function.
 
 
 
@@ -29,7 +35,7 @@ The main feature of the application. A simple process wherein the user has a pre
 
 **Read:**
 
-This option is split into two parts. Upon loading this section, the user is prompted by a request asking if the user would either like to see 'Chore Types' or 'Chore History'. If the user selects chore types, they will see the relevant types of chore available as per the Do section. If the user selects 'Chore History', they will be able to see all previous chores logged with relevant dates, times, chore types and names of the persons who did said chore.
+This option is split into two features. Upon loading this section, the user is prompted by a request asking if the user would either like to see 'Chore Types' or 'Chore History'. If the user selects chore types, they will see the relevant types of chore available as per the Do section. If the user selects 'Chore History', they will be able to see all previous chores logged with relevant dates, times, chore types and names of the persons who did said chore.
 
 **Create:**
 
@@ -53,13 +59,12 @@ Application is opened on terminal.
 
 **2a)**
 Options menu featuring each option available to the user.
-Text explaining the options is output, affirming to the user that they need to type in their desired option to follow through over to the next section. 
+Text explaining the options is output, affirming to the user that they need to select their desired option to follow through over to the next section. 
 These options are labeled 'Do', 'Read', 'Create', 'Edit', 'Delete', and 'Exit'.
-For example, to peruse the 'read' section, the user would need to type in and enter 'read'.
+For example, to peruse the 'read' section, the user would need to press down on their arrow keys and select enter on 'read'.
 
 **2b)**
-Errors in this section are handled whenever a user types in an invalid input, which in this case is anything typed that is not any of the previously mentioned options.
-In this case an error message stating the input is invalid is then displayed, followed by a return to the options menu.
+Errors in this section are bypassed due to a lack of text input.
 
 
 ####**3)**
@@ -91,7 +96,7 @@ In terms of error handling, in the initial input if any value inconsistent with 
 #####***Read section***
 
 **4a)**
-After typing in 'read' in the options menu, a message asking the user whether they want to read 'chore types' or 'chore history' is displayed. 
+After selecting 'read' in the options menu, a message asking the user whether they want to read 'chore types' or 'chore history' is displayed. 
 
 **4b)**
 The user then types in the relevant item they wish to view.
@@ -109,7 +114,7 @@ If any value inconsistent with 'chore type', 'chore types', or 'chore history' i
 #####***Create section***
 
 **5a)**
-After typing in 'create' in the options section, the contents of the 'chore types' CSV file is output, followed by a message asking the user what extra item they'd like to create.
+After selecting 'create' in the options section, the contents of the 'chore types' CSV file is output, followed by a message asking the user what extra item they'd like to create.
 
 **5b)**
 The user then inputs the title of the new chore type they wish to enter.
@@ -135,7 +140,7 @@ If any answer other than 'yes' is entered in the final input, a message to the u
 #####***Edit section***
 
 **6a)**
-If the user types in 'edit' in the options menu, the contents of the 'chore types' CSV are displayed, asking the user what specific item they'd like to edit.
+If the user selects 'edit' in the options menu, the contents of the 'chore types' CSV are displayed, asking the user what specific item they'd like to edit.
 
 **6b)**
 The user then inputs the name of the chore type they'd like to edit.
@@ -157,7 +162,7 @@ In the initial input section, if the values entered are inconsistent with the ch
 #####***Delete section***
 
 **7a)**
-If the user enters 'delete' on the options menu, the 'chore types' CSV file contents are displayed to the user, then asking them what item they would like to delete.
+If the user selects 'delete' on the options menu, the 'chore types' CSV file contents are displayed to the user, then asking them what item they would like to delete.
 
 **7b)**
 The user then types in the value of the item they'd like to delete.
@@ -185,7 +190,7 @@ If the user inputs anything other than 'yes', an error message is shown and the 
 
 #Control flow diagram
 
-![Option Menu](/docs/option_menu.png)
+![Option Menu](/docs/option_menu_(prompt_version).png)
 
 !['Do' Process](/docs/do_process.png)
 
