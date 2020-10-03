@@ -1,17 +1,14 @@
 # ======= CSV =========
 
-require "csv"
-
+require 'csv'
 
 # ======= COLORIZE =========
 
-require "colorize"
-
+require 'colorize'
 
 # ======= SMARTER_CSV =========
 
-require "smarter_csv"
-
+require 'smarter_csv'
 
 # ======= TTY-FONT =========
 
@@ -24,7 +21,3 @@ require 'tty-table'
 # ======= TTY-PROMPT =========
 
 require 'tty-prompt'
-
-# ======= RSPEC ==========
-
-require 'rspec/autorun'

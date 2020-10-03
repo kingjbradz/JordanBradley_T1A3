@@ -1,9 +1,8 @@
-require 'smarter_CSV'
-require 'csv'
+require_relative 'gems.rb'
 
-chore_list = CSV.open(("chore-list.csv"), headers: true)
+chore_list = CSV.open('chore-list.csv', headers: true)
 
-chore_data = SmarterCSV.process("chore-list.csv")
+chore_data = SmarterCSV.process('chore-list.csv')
 
 chores = []
 
@@ -19,4 +18,3 @@ chores.push chore_list
 # chore_list[index] = gets.chomp
 # puts "#{chore['number']}: #{chore['chore']}"
 # end
-

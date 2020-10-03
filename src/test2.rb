@@ -1,4 +1,5 @@
-require_relative "gemfile.rb"
+require_relative 'gem_relative.rb'
+require 'rspec/autorun'
 
 chores = []
 
