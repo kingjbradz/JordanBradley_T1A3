@@ -1,3 +1,5 @@
+# TESTING AREA FOR EDIT AND DELETE SECTIONS
+
 # frozen_string_literal: true
 
 chore_list = CSV.open('chore-list.csv', headers: true)
