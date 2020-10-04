@@ -1,5 +1,5 @@
 #!/bin/bash
 
-ruby main.rb
-gem_relative.rb
 bundle install
+ruby main.rb
+ruby gem_relative.rb

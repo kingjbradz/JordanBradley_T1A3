@@ -1,0 +1,43 @@
+source 'http://rubygems.org'
+
+#======== COLORIZE =========
+
+git_source(:github) { |repo_name| "https://github.com/fazibear/#{colorize}"}
+
+gem 'colorize', '~> 0.8.1'
+
+#======== SMARTER CSV =========
+
+git_source(:github) { |repo_name| "https://github.com/tilo/#{smarter_csv}"}
+
+gem 'smarter_csv', "~> 1.1.4"
+
+#======== TTY-FONT =========
+
+git_source(:github) { |repo_name| "https://github.com/piotrmurach/#{tty-font}"}
+
+gem "tty-font", "~> 0.4.0"
+
+#======== TTY-TABLE =========
+
+git_source(:github) { |repo_name| "https://github.com/piotrmurach/#{tty-table}"}
+
+gem "tty-table", "~> 0.11.0"
+
+#======== TTY-PROMPT =========
+
+git_source(:github) { |repo_name| "https://github.com/piotrmurach/#{tty-prompt}"}
+
+gem "tty-prompt", "~> 0.21.0"
+
+#======== RSpec =========
+
+git_source(:github) { |repo_name| "https://github.com/rspec/#{rspec}"}
+
+gem "rspec", "~> 3.4.0"
+
+#======== RUBOCOP ========
+
+git_source(:github) { |repo_name|  "https://github.com/rubocop-hq/#{rubocop}"}
+
+gem 'rubocop', '~> 0.92.0', require: false
