@@ -89,7 +89,7 @@ loop do
     confirm = gets.chomp.downcase
     if confirm == 'yes'
       File.write('chore-list.csv', "\n#{number},#{new_chore}", mode: 'a')
-      puts "#{new_chore} is in the list!"
+      puts "#{new_chore} is in the list!".light_blue
     elsif confirm != 'yes'
       puts 'Not saving. Try again!'.light_blue
     end
