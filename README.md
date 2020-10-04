@@ -224,7 +224,9 @@ Also, since this application features the use of Ruby Gems, it is recommended th
 
 [Link for Bundler](https://bundler.io/)
 
-Gems featured in this application include Colorize, Smarter_CSV, TTY-Table, TTY-Prompt, and TTY-Font. In the case of bundle installation not working properly, you can find the sources for said gems here.
+Gems featured in this application include Colorize, Smarter_CSV, TTY-Table, TTY-Prompt, and TTY-Font. 
+They will be automatically installed alongside the application.
+In the case of bundle installation not working properly, you can find the sources for said gems here.
 
 • [Colorize](https://rubygems.org/gems/colorize/versions/0.8.1)
 This adds color to the text.
