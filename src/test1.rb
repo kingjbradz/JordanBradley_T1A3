@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'gem_relative.rb'
+require 'rubygems'
+require 'bundler/setup'
 require 'rspec/autorun'
 
 chore_list = CSV.foreach('chore-list.csv', headers: true)

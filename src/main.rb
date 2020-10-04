@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-require_relative 'gem_relative.rb'
+require 'rubygems'
+require 'bundler/setup'
+
+# require_relative 'gem_relative.rb'
 
 chores = []
 
@@ -102,8 +105,7 @@ loop do
       if chore_action == chore_data[:chore]
       end
     rescue TypeError
-      puts 'Not working.
-       Back to title menu!'.magenta
+      puts 'Not working. Back to title menu!'.magenta
     end
     # output chore list
     # user input

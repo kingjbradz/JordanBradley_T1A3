@@ -209,3 +209,19 @@ If the user inputs anything other than 'yes', an error message is shown and the 
 [Trello link](https://trello.com/b/eymEHjfk/home-task-app)
 
 #Help
+
+Please make sure you have the latest version of Ruby installed.
+
+[Link](https://www.ruby-lang.org/en/downloads/)
+
+Gems featured in this application include Colorize, Smarter_CSV, TTY-Table, TTY-Prompt, and TTY-Font. In the case of bundle installation not working properly, you can find the sources for said gems here.
+
+• [Colorize](https://rubygems.org/gems/colorize/versions/0.8.1)
+
+• [Smarter_CSV](https://rubygems.org/gems/smarter_csv/versions/1.1.4)
+
+• [TTY-Table](https://rubygems.org/gems/tty-table/versions/0.10.0)
+
+• [TTY-Prompt](https://rubygems.org/gems/tty-prompt)
+
+• [TTY-Font](https://rubygems.org/gems/tty-font/versions/0.2.0)

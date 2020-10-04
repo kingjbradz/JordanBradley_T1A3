@@ -1,4 +1,5 @@
-require_relative 'gem_relative.rb'
+require 'rubygems'
+require 'bundler/setup'
 require 'rspec/autorun'
 
 chores = []
