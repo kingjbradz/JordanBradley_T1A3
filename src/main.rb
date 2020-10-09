@@ -1,9 +1,22 @@
-# frozen_string_literal: true
+require 'csv'
+require 'tty-prompt'
+require 'tty-font'
+require 'tty-table'
+require 'smarter_csv'
+require 'colorize'
 
-require 'rubygems'
-require 'bundler/setup'
+def output_capture(question)
+  puts question
+  input = gets.chomp
+  return input
+end
 
-# require_relative 'gem_relative.rb'
+def exit_application
+  leaving_font = TTY::Font.new(:standard)
+  puts leaving_font.write('GOODBYE!', letter_spacing: 2).yellow
+  puts 'Closing application. Thank you!'.red
+  exit
+end
 
 chores = []
 
@@ -43,10 +56,8 @@ loop do
       end
       answer = gets.chomp
       the_chore = chores.find { |chore| chore['number'] == answer }
-      puts 'What is your name?'.blue
-      name = gets.chomp
-      puts "#{the_chore['chore']} done by #{name}. Is this correct? If so. type 'yes'.".blue
-      confirm = gets.chomp.downcase
+      name = output_capture("What is your name?".blue)
+      confirm = output_capture("#{the_chore['chore']} done by #{name}. Is this correct? If so. type 'yes'.".blue)
       if confirm == 'yes'
         File.write('chore-history.csv', "\n#{the_chore['chore']}, #{name}, #{Time.now}", mode: 'a')
         puts "Chore is logged. Thanks #{name}!".blue
@@ -58,9 +69,8 @@ loop do
     end
 # ===== READ ======
   when 2
-    puts 'Which would you like to read,'.blue
-    puts 'Chore Types or Chore History?'.light_blue
-    answer = gets.chomp.downcase
+    puts 'Which would you like to read,'.light_blue
+    answer = output_capture("Chore Types or Chore History?".blue)
     if (answer == 'chore types') || (answer == 'chore type')
       chore_list.each do |line|
         table = TTY::Table.new([[(line['number']).to_s, (line['chore']).to_s]])
@@ -80,13 +90,9 @@ loop do
     chore_list.each do |line|
       puts "#{line['number']}: #{line['chore']}".green
     end
-    puts 'What would you like to add?'.blue
-    new_chore = gets.chomp
-    puts 'Please designate a number!'.blue
-    number = gets.chomp.to_i
-    puts "#{new_chore} is to be added".blue
-    puts "with a designation of #{number}. Is that OK?".blue
-    confirm = gets.chomp.downcase
+    new_chore = output_capture("What Chore would you like to add?".blue)
+    number = output_capture("Please designate a number!".blue)
+    confirm = output_capture("#{new_chore} is to be added with a designation of #{number}. Is that OK?".blue)
     if confirm == 'yes'
       File.write('chore-list.csv', "\n#{number},#{new_chore}", mode: 'a')
       puts "#{new_chore} is in the list!".light_blue
@@ -100,53 +106,31 @@ loop do
         puts "#{line['number']}: #{line['chore']}"
         chores.push line.to_h
       end
-      puts 'Type the number of the chore you wish to change.'
-      chore_action = gets.chomp
+      chore_action = output_capture("Type the number of the chore you wish to change.".blue)
       if chore_action == chore_data[:chore]
       end
     rescue TypeError
       puts 'Not working. Back to title menu!'.magenta
     end
-    # output chore list
-    # user input
-    # check validility - if invalid, output error message
-    # ask user what input would like to change to
-    # input new name
-    # output input
-    # ask user if OK
-    # if no, go to output message
-    # if yes, save to CSV chore list file
-
   when 5
 # ===== DELETE =====
     begin
-      puts 'Type the number of the chore you wish to delete:'.blue
       chore_list.each do |line|
         puts "#{line['number']}: #{line['chore']}"
         chores.push line['chore']
       end
-      answer = gets.chomp.downcase
+      answer = output_capture("Type the number of the chore you wish to delete.".blue)
       the_chore = chores.find { |chore| chore['chore'] == answer }
       chores.delete answer
     rescue TypeError
       puts 'Oops. Not working. Back to title menu!'.magenta
-      # user input
-      # check validility - if invalid, output error message
-      # output input
-      # ask user if OK
-      # if no, go to output message
-      # if yes, write to CSV chore list file
     end
 # ====== EXIT ======
   when 6
-    leaving_font = TTY::Font.new(:standard)
-    puts 'Exiting application, are you sure?'.blue
-    puts "If yes, type 'yes'.".light_blue
-    answer = gets.chomp.downcase
+    puts 'Exiting application, are you sure?'.light_blue
+    answer = output_capture("If yes, type 'yes'.".blue)
     if (answer == 'yes') || (answer == 'y')
-      puts leaving_font.write('GOODBYE!', letter_spacing: 2).yellow
-      puts 'Closing application. Thank you!'.red
-      exit
+      exit_application
     else
       puts 'Invalid input! Returning to title screen.'.magenta
     end
