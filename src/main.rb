@@ -6,6 +6,7 @@ require 'smarter_csv'
 require 'colorize'
 
 require_relative 'methods.rb'
+require_relative 'help.rb'
 
 chores = []
 
