@@ -47,7 +47,7 @@ loop do
       answer = gets.chomp
       the_chore = chores.find { |chore| chore['number'] == answer }
       name = output_capture("What is your name?".blue)
-      confirm = output_capture("#{the_chore['chore']} done by #{name}. Is this correct? If so. type 'yes'.".blue)
+      confirm = output_capture("#{the_chore['chore']} done by #{name}. Is this correct? If so. type 'yes'.".blue).downcase
       if confirm == 'yes'
         File.write('chore-history.csv', "\n#{the_chore['chore']}, #{name}, #{Time.now}", mode: 'a')
         puts "Chore is logged. Thanks #{name}!".blue
@@ -60,7 +60,7 @@ loop do
 # ===== READ ======
   when 2
     puts 'Which would you like to read,'.light_blue
-    answer = output_capture("Chore Types or Chore History?".blue)
+    answer = output_capture("Chore Types or Chore History?".blue).downcase
     if (answer == 'chore types') || (answer == 'chore type')
       chore_list.each do |line|
         table = TTY::Table.new([[(line['number']).to_s, (line['chore']).to_s]])
@@ -81,8 +81,8 @@ loop do
       puts "#{line['number']}: #{line['chore']}".green
     end
     new_chore = output_capture("What Chore would you like to add?".blue)
-    number = output_capture("Please designate a number!".blue)
-    confirm = output_capture("#{new_chore} is to be added with a designation of #{number}. Is that OK?".blue)
+    number = output_capture("Please designate a number!".blue).to_i
+    confirm = output_capture("#{new_chore} is to be added with a designation of #{number}. Is that OK?".blue).downcase
     if confirm == 'yes'
       File.write('chore-list.csv', "\n#{number},#{new_chore}", mode: 'a')
       puts "#{new_chore} is in the list!".light_blue

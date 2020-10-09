@@ -1,5 +1,3 @@
-help = ARGV[0]
-
 help_doc = %(
 As this program was written in the Ruby programming language,
 it is recommended that you have it installed to get the most out of this application.
@@ -121,4 +119,7 @@ just like the 'Do' and 'Create' sections.
 Thank you!
 )
 
-puts help_doc
+if ARGV[0] == 'help'
+    puts help_doc
+    exit
+end
